@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'base.html' %} {% block content %}
+
+    <h2>{{page_title}}</h2>
+
+    <p>
+    To be spiritual is an awareness, an awareness that you are so much more than just a physical body, that has a personality,
+    that has thoughts and feelings that have been shaped by life experiences. Which is completely natural that we have become,
+    we are all born in a world where the agenda of your life is planned for you as soon as you give birth: kindergarten, preschool, school, work, marriage, etc.
+    And let us not forget all the cultural and sociological conditions.
+    There is already a program of what is expected of you, and God forbade you to deviate from the norm (read: sarcasm).
+    Just yes, that was the thing about being normal again, wasn't it?
+
+    To be spiritual means to live from the heart and not identify as with one's thoughts, or not to react based on emotions.
+    Being spiritual is an awareness within you, you are the essence behind the thoughts and feelings, ie the energy and power behind. The soul.  
+    </p>
+
+    <hr class="featurette-divider">
+
+<!---Här börjar en ForLoop-->
+{% for member in company %} 
+        {% if loop.index % 2 != 0 %}
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>{{ member.description }}</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="Picture of {{ member.name }}">
+                </div>
+            </div>
+        {% else %}
+            <div class="row featurette">
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive" src="{{ member.image_source }}" alt="Picture of {{ member.name }}">
+                </div>
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url }}">{{ loop.index }}. {{ member.name }}</a></h3>
+                    <p>{{ member.description }}</p>
+                </div>
+            </div>
+        {% endif %} 
+        {% if loop.index != 13 %}
+            <hr class="featurette-divider"> 
+        {% endif %} 
+    {% endfor %} 
+{% endblock %}
